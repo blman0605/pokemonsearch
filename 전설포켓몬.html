@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>포켓몬 검색</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>포켓몬 검색</h2>
+    <input type="text" id="nameSearch" onkeyup="filterTable()" placeholder="이름 검색">
+    <input type="text" id="biomeSearch" onkeyup="filterTable()" placeholder="바이옴 검색">
+    <input type="text" id="timeSearch" onkeyup="filterTable()" placeholder="시간 검색">
+    <br><br>
+    <table id="pokemonTable">
+        <thead>
+            <tr>
+                <th>세대</th>
+                <th>이름(한글)</th>
+                <th>이름(영어)</th>
+                <th>바이옴</th>
+                <th>시간</th>
+                <th>기타 조건</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1세대</td><td>뮤츠</td><td>Mewtwo</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td>1세대</td><td>프리져</td><td>Articuno</td><td>X</td><td>X</td><td>아이템 얼어 붙은 영혼의 보주가 인벤토리에 있는 상태에서 포켓몬 375마리를 처치하여 영혼을 채운 뒤 프리져 신전에 사용하여 스폰 및 포획</td></tr>
+<tr><td>1세대</td><td>썬더</td><td>Zapdos</td><td>X</td><td>X</td><td>아이템 정적의 영혼의 보주가 인벤토리에 있는 상태에서 포켓몬 375마리를 처치하여 영혼을 채운 뒤 썬더 신전에 사용하여 스폰 및 포획</td></tr>
+<tr><td>1세대</td><td>파이어</td><td>Moltres</td><td>X</td><td>X</td><td>아이템 불타는 영혼의 보주가 인벤토리에 있는 상태에서 포켓몬 375마리를 처치하여 영혼을 채운 뒤 파이어 신전에 사용하여 스폰 및 포획</td></tr>
+<tr><td>1세대</td><td>뮤</td><td>Mew</td><td>변형된 정글</td><td>아침</td><td>장소: 땅</td></tr>
+<tr><td>2세대</td><td>칠색조</td><td>Ho-Oh</td><td>X</td><td>X</td><td>크리스탈 방울을 설치 시 아침마다 1% 확률로 울리게 되며 황혼 시간 때 설치자가 주변에 있을 경우, 배틀이 걸리며 스폰</td></tr>
+<tr><td>2세대</td><td>루기아</td><td>Lugia</td><td>X</td><td>X</td><td>해명의 방울을 설치 시 아침마다 1% 확률로 울리게 되며 황혼 시간 때 설치자가 주변에 있을 경우, 배틀이 걸리며 스폰</td></tr>
+<tr><td>2세대</td><td>라이코</td><td>Raikou</td><td>모든 사바나 바이옴</td><td>새벽, 아침 | 장소: 땅</td><td>시간: 새벽, 아침 | 장소: 땅</td></tr>
+<tr><td>2세대</td><td>앤테이</td><td>Entei</td><td>타이가 포함 눈 덮인 산 제외, 모든 산 바이옴</td><td>아침</td><td>장소: 낮</td></tr>
+<tr><td>2세대</td><td>스이쿤</td><td>Suicune</td><td>모든 해변, 해안 바이옴</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>2세대</td><td>세레비</td><td>Celebi</td><td>X</td><td>X</td><td>너도밤나무숲의 사당에 GS볼을 사용하여 스폰 및 포획</td></tr>
+<tr><td>3세대</td><td>그란돈</td><td>Groudon</td><td>사막언덕</td><td>낮</td><td>장소: 땅 | 날씨: 맑음</td></tr>
+<tr><td>3세대</td><td>그란돈</td><td>Groudon</td><td>사막언덕</td><td>낮</td><td>장소: 땅 | 날씨: 맑음</td></tr>
+<tr><td>3세대</td><td>가이오가</td><td>Kyogre</td><td>모든 깊은 바다 바이옴</td><td>밤</td><td>장소: 물 | 날씨: 비, 폭풍 (확률 2배)</td></tr>
+<tr><td>3세대</td><td>레쿠쟈</td><td>Rayquaza</td><td>타이가 포함 눈 덮인 산 제외, 모든 산 바이옴</td><td>오후, 황혼</td><td>장소: 공중</td></tr>
+<tr><td>3세대</td><td>레지락</td><td>Regirock</td><td>모든 메사 바이옴</td><td>오후</td><td>장소: 지하</td></tr>
+<tr><td>3세대</td><td>레지아이스</td><td>Regice</td><td>모든 눈 바이옴</td><td>낮</td><td>장소: 지하</td></tr>
+<tr><td>3세대</td><td>레지스틸</td><td>Registeel</td><td>모든 사막 바이옴</td><td>새벽, 아침</td><td>장소: 지하</td></tr>
+<tr><td>3세대</td><td>라티아스</td><td>Latias</td><td>바다 | 따뜻한 바다</td><td>아침</td><td>장소: 공중</td></tr>
+<tr><td>3세대</td><td>라티오스</td><td>Latios</td><td>바다 | 따뜻한 바다</td><td>오후</td><td>장소: 공중</td></tr>
+<tr><td>3세대</td><td>지라치</td><td>Jirachi</td><td>자갈투성이 산</td><td>새벽, 아침</td><td>장소: 땅</td></tr>
+<tr><td>3세대</td><td>테오키스</td><td>Deoxys</td><td>눈 덮인 타이가 산 | 라나키라마운틴</td><td>아침</td><td>장소: 땅</td></tr>
+<tr><td>4세대</td><td>디아루가</td><td>Dialga</td><td>X</td><td>X</td><td>시공 제단에 빨간쇠사슬과 금강옥을 사용하여 스폰 및 포획</td></tr>
+<tr><td>4세대</td><td>펄기아</td><td>Palkia</td><td>X</td><td>X</td><td>시공 제단에 빨간쇠사슬과 백옥을 사용하여 스폰 및 포획</td></tr>
+<tr><td>4세대</td><td>기라티나</td><td>Giratina</td><td>X</td><td>X</td><td>시공 제단에 빨간쇠사슬과 백금옥을 사용하여 스폰 및 포획</td></tr>
+<tr><td>4세대</td><td>유크시</td><td>Uxie</td><td>어두운 숲 | 어두운 숲 언덕 | 사막 호수</td><td>오후</td><td>장소: 물</td></tr>
+<tr><td>4세대</td><td>엠라이트</td><td>Mesprit</td><td>모든 자작나무 숲 바이옴 | 사막 호수</td><td>새벽, 아침</td><td>장소: 물</td></tr>
+<tr><td>4세대</td><td>아그놈</td><td>Azelf</td><td>숲 | 나무가 우거진 언덕 | 꽃 숲 | 사막 호수</td><td>아침</td><td>장소: 물</td></tr>
+<tr><td>4세대</td><td>히드런</td><td>Heatran</td><td>모든 메사 바이옴 | 현무암 삼각주</td><td>새벽, 아침, 낮, 오후, 황혼, 밤</td><td>장소: 용암</td></tr>
+<tr><td>4세대</td><td>레지기가스</td><td>Regigigas</td><td>모든 사바나 바이옴</td><td>오후, 황혼</td><td>장소: 지하</td></tr>
+<tr><td>4세대</td><td>크레세리아</td><td>Cresselia</td><td>키 큰 자작나무 숲</td><td>밤</td><td>장소: 땅 | 달: 보름달</td></tr>
+<tr><td>4세대</td><td>마나피</td><td>Manaphy</td><td>따뜻한 바다 | 미지근한 바다</td><td>아침</td><td>장소: 물 | 날씨: 맑음</td></tr>
+<tr><td>4세대</td><td>다크라이</td><td>Darkrai</td><td>어두운 숲 언덕</td><td>밤</td><td>장소: 땅 | 달: 신월 (빈달)</td></tr>
+<tr><td>4세대</td><td>쉐이미</td><td>Shaymin</td><td>해바라기 평원 | 라나키라마운틴 | 꽃 숲</td><td>아침</td><td>장소: 땅</td></tr>
+<tr><td>4세대</td><td>아르세우스</td><td>Arceus</td><td>X</td><td>X</td><td>레전드 플레이트를 제외한 모든 타입 플레이트 18개를 모아 아크 성배에 사용하여 천계의 피리를 만든 뒤 시공 제단의 사용 후 스폰 및 포획</td></tr>
+<tr><td>5세대</td><td>레시라무</td><td>Reshiram</td><td>모든 거대 나무 타이가</td><td>낮</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>제크로무</td><td>Zekrom</td><td>모든 거대 나무 타이가</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>큐레무</td><td>Kyurem</td><td>역고드름</td><td>오후, 황혼</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>코바르온</td><td>Cobalion</td><td>자작나무 숲 언덕 | 나무가 우거진 언덕 | 키 큰 자작나무 언덕</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>테라키온</td><td>Terrakion</td><td>자작나무 숲 언덕 | 나무가 우거진 언덕 | 키 큰 자작나무 언덕</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>비리디온</td><td>Virizion</td><td>자작나무 숲 언덕 | 나무가 우거진 언덕 | 키 큰 자작나무 언덕</td><td>오후, 황혼</td><td>장소: 낮</td></tr>
+<tr><td>5세대</td><td>토네로스</td><td>Tornadus</td><td>평원 | 해바라기 평원</td><td>오후</td><td>장소: 공중 | 날씨: 비, 폭풍 ( 확률 2배 )</td></tr>
+<tr><td>5세대</td><td>볼트로스</td><td>Thundurus</td><td>평원 | 해바라기 평원</td><td>아침</td><td>장소: 공중 | 날씨: 비, 폭풍 ( 확률 2배 )</td></tr>
+<tr><td>5세대</td><td>랜드로스</td><td>Landorus</td><td>모든 메사 고원 바이옴</td><td>새벽, 아침</td><td>장소: 공중</td></tr>
+<tr><td>5세대</td><td>비크티니</td><td>Victini</td><td>모든 사바나 바이옴</td><td>낮</td><td>장소: 땅 | 날씨: 맑음</td></tr>
+<tr><td>5세대</td><td>케르디오</td><td>Keldeo</td><td>강 | 사막 호수</td><td>낮</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>메로엣타</td><td>Meloetta</td><td>해바라기 평원 | 꽃 숲</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>5세대</td><td>게노세크트</td><td>Genesect</td><td>나무가 우거진 산 | 자갈투성이 산</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>6세대</td><td>제르네아스</td><td>Xerneas</td><td>어두운 숲</td><td>낮</td><td>장소: 땅</td></tr>
+<tr><td>6세대</td><td>이벨타르</td><td>Yveltal</td><td>타이가 산</td><td>밤</td><td>장소: 공중</td></tr>
+<tr><td>6세대</td><td>지가르데</td><td>Zygarde</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td>6세대</td><td>디안시</td><td>Diancie</td><td>타이가 포함 눈 덮인 산 제외, 모든 산 바이옴</td><td>아침</td><td>장소: 지하</td></tr>
+<tr><td>6세대</td><td>후파</td><td>Hoopa</td><td>사막, 사막 언덕 | 사막 호수 | 작은 엔드 섬</td><td>오후</td><td>장소: 땅</td></tr>
+<tr><td>6세대</td><td>볼케니온</td><td>Volcanion</td><td>사막 호수</td><td>새벽, 아침</td><td>장소: 물</td></tr>
+<tr><td>7세대</td><td>코스모그</td><td>Cosmog</td><td>해바라기 평원, 모든 울트라홀 바이옴</td><td>황혼, 밤(해바라기), 새벽, 낮(울홀)</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>코스모움</td><td>Cosmoem</td><td>X</td><td>X</td><td>코스모그 43레벨에 진화</td></tr>
+<tr><td>7세대</td><td>솔가레오</td><td>Solgaleo</td><td>X</td><td>X</td><td>낮일 때 코스모움 53레벨에 진화</td></tr>
+<tr><td>7세대</td><td>루나아라</td><td>Lunala</td><td>X</td><td>X</td><td>밤일 때 코스모움 53레벨에 진화</td></tr>
+<tr><td>7세대</td><td>네크로즈마</td><td>Necrozma</td><td>어두운 숲</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>타입:널</td><td>Type: Null</td><td>정글 변두리</td><td>황혼, 밤</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>실버디</td><td>Silvally</td><td>X</td><td>X</td><td>타입:널 친밀도 220 이상일 때 레벨업</td></tr>
+<tr><td>7세대</td><td>카푸꼬꼬꼭</td><td>Tapu Koko</td><td>정글</td><td>아침</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>카푸나비나</td><td>Tapu Lele</td><td>정글</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>카푸브루루</td><td>Tapu Bulu</td><td>정글</td><td>낮</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>카푸느지느</td><td>Tapu Fini</td><td>정글</td><td>오후</td><td>장소: 물</td></tr>
+<tr><td>7세대</td><td>울트라비스트</td><td>Ultra Beasts</td><td>울트라 차원 바이옴 전체</td><td>새벽, 아침, 낮, 오후, 황혼, 밤</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>마기아나</td><td>Magearna</td><td>어두운 숲 | 어두운 숲 언덕</td><td>낮</td><td>장소: 땅 | 건축물: 우드랜드 맨션</td></tr>
+<tr><td>7세대</td><td>마샤도</td><td>Marshadow</td><td>메사 고원 | 모든 네더 바이옴</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>제라오라</td><td>Zeraora</td><td>사바나 고원</td><td>오후</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>멜탄</td><td>Meltan</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td>7세대</td><td>멜메탈</td><td>Melmetal</td><td>X</td><td>X</td><td>멜탄에게 충분한 양의 철 광물을 먹힌 후 레벨 업 (먹인 철양은 정보창에서 확인 가능)</td></tr>
+<tr><td>7세대</td><td>두파팡</td><td>Blacephalon</td><td>울트라 포레스트</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>차곡차곡</td><td>Stakataka</td><td>울트라 데저트</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>베베놈</td><td>Poipole</td><td>울트라 정글</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>아고용</td><td>Naganadel</td><td>X</td><td>X</td><td>야생, 건축물에서 자연 / 인공 스폰하지 않습니다. 베베놈이 용의파동이란 기술을 배운 후 레벨 업</td></tr>
+<tr><td>7세대</td><td>매시붕</td><td>Buzzwole</td><td>울트라 정글</td><td>모두</td><td>장소: 땅, 나무 위</td></tr>
+<tr><td>7세대</td><td>페로코체</td><td>Pheromosa</td><td>울트라 데저트</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>전수목</td><td>Xurkitree</td><td>울트라 플랜트</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>철화구야</td><td>Celesteela</td><td>울트라 크레이터</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>종이신도</td><td>Kartana</td><td>울트라 포레스트</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>악식킹</td><td>Guzzlord</td><td>울트라 데저트</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>7세대</td><td>텅비드</td><td>Nihilego</td><td>울트라 딥 시</td><td>모두</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>자시안</td><td>Zacian</td><td>숲 | 자작나무 숲</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>자마젠타</td><td>Zamazenta</td><td>숲 | 자작나무 숲</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>무한다이노</td><td>Eternatus</td><td>늪, 늪 언덕, 엔드 불모지</td><td>새벽, 아침</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>치고마</td><td>Kubfu</td><td>대나무 정글, 대나무 정글 언덕</td><td>오후</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>우라오스</td><td>Urshifu</td><td>X</td><td>X</td><td>일격: 악의 족자 근처에서 치고마를 꺼낸 후 우클릭 / 연격: 물의 족자 근처에서 치고마를 꺼낸 후 우클릭</td></tr>
+<tr><td>8세대</td><td>레지에레키</td><td>Regieleki</td><td>모든 엔드 바이옴</td><td>오후</td><td>장소: 땅 | 건축물: 엔드 도시, 인공 구조물</td></tr>
+<tr><td>8세대</td><td>레지드래고</td><td>Regidrago</td><td>모든 네더 바이옴</td><td>낮</td><td>장소: 땅 | 건축물: 네더 요새, 인공 구조물</td></tr>
+<tr><td>8세대</td><td>가라르 프리져</td><td>Galarian Articuno</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td>8세대</td><td>가라르 썬더</td><td>Galarian Zapdos</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td>8세대</td><td>가라르 파이어</td><td>Galarian Moltres</td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td>8세대</td><td>블리자포스</td><td>Glastrier</td><td>모든 눈 바이옴</td><td>낮</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>레이스포스</td><td>Spectrier</td><td>늪, 늪 언덕</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>버드렉스</td><td>Calyrex</td><td>모든 눈 덮인 타이가 바이옴</td><td>아침</td><td>장소: 땅</td></tr>
+<tr><td>8세대</td><td>러브로스</td><td>Enamorus</td><td>해바라기 평원 | 꽃 숲</td><td>새벽, 아침</td><td>장소: 공중</td></tr>
+<tr><td>8세대</td><td>자루도</td><td>Zarude</td><td>모든 정글 바이옴</td><td>밤</td><td>장소: 나무 위</td></tr>
+<tr><td>9세대</td><td>코라이돈</td><td>Koraidon</td><td>작은 엔드 섬</td><td>낮</td><td>장소: 땅</td></tr>
+<tr><td>9세대</td><td>미라이돈</td><td>Miraidon</td><td>작은 엔드 섬</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>9세대</td><td>총지엔</td><td>Wo-Chien</td><td>늪, 늪 언덕</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>9세대</td><td>파오젠</td><td>Chien-Pao</td><td>눈 덮인 산 | 눈 덮인 타이가 산 | 눈 덮인 타이가 언덕</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>9세대</td><td>딩루</td><td>Ting-Lu</td><td>타이가 | 타이가 언덕 | 타이가 산</td><td>밤</td><td>장소: 땅</td></tr>
+<tr><td>9세대</td><td>위유이</td><td>Chi-Yu</td><td>모든 메사 고원 | 침식된 악지 지형</td><td>낮</td><td>장소: 용암 | Y 좌표: 80 이상</td></tr>
+        </tbody>
+    </table>
+    <script>
+        function filterTable() {
+            let nameInput = document.getElementById("nameSearch").value.toLowerCase();
+            let biomeInput = document.getElementById("biomeSearch").value.toLowerCase();
+            let timeInput = document.getElementById("timeSearch").value.toLowerCase();
+            let table = document.getElementById("pokemonTable");
+            let tr = table.getElementsByTagName("tr");
+            for (let i = 1; i < tr.length; i++) {
+                let tdName = tr[i].getElementsByTagName("td")[1];
+                let tdBiome = tr[i].getElementsByTagName("td")[3];
+                let tdTime = tr[i].getElementsByTagName("td")[4];
+                if (tdName && tdBiome && tdTime) {
+                    let nameText = tdName.textContent.toLowerCase();
+                    let biomeText = tdBiome.textContent.toLowerCase();
+                    let timeText = tdTime.textContent.toLowerCase();
+                    if (nameText.includes(nameInput) && biomeText.includes(biomeInput) && timeText.includes(timeInput)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                } 
+            }
+        }
+    </script>
+</body>
+</html>
